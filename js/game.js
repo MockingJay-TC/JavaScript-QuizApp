@@ -12,9 +12,11 @@ let questionCounter = 0;
 let availableQuesions = [];
 
 let questions = [];
+// getting category id in localstorage
+let category = localStorage.getItem('cat');
 
 fetch(
-    'https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple'
+    `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=easy&type=multiple`
 )
     .then((res) => {
         return res.json();
@@ -64,7 +66,6 @@ getNewQuestion = () => {
         localStorage.setItem('mostRecentScore', score);
         //go to the end page
         return window.location.assign('end.html');
-            
     }
     questionCounter++;
     progressText.innerText = `Question ${questionCounter}/${MAX_QUESTIONS}`;
@@ -112,3 +113,4 @@ incrementScore = (num) => {
     score += num;
     scoreText.innerText = score;
 };
+// Victor.Aremu
